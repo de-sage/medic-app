@@ -29,7 +29,6 @@
             <th>Prof Name</th>
             <th>Accuracy</th>
             <th>Issue Id</th>
-            <th>Specialization Id</th>
             <th>Valid</th>
         </tr>
         </thead>
@@ -39,13 +38,7 @@
             <td th:text="${diagnosis.profName}" />
             <td th:text="${diagnosis.accuracy}" />
             <td th:text="${diagnosis.issueId}" />
-            <td th:text="${diagnosis.specializationId}" />
             <td th:text="${diagnosis.isValid}" />
-<!--            <td>-->
-<!--                <a th:href="@{/showUpdateForm(diagnosisId=${diagnosis.id})}" class="btn btn-info">Update</a>-->
-
-<!--                <a th:href="@{/deleteEmployee(diagnosisId=${diagnosis.id})}" class="btn btn-danger ml-2">Delete</a>-->
-<!--            </td>-->
         </tr>
         </tbody>
 

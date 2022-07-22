@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Getter
+@ToString
 @Setter
 @Entity
 @Builder

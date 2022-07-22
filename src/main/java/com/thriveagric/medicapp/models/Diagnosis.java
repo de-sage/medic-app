@@ -32,10 +32,16 @@ public class Diagnosis {
 
     private Long issueId;
 
-    private Long specializationId;
-
     @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private Patient patient;
+
+    public void setIsValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public boolean getIsValid() {
+        return isValid;
+    }
 }
