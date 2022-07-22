@@ -3,8 +3,10 @@ package com.thriveagric.medicapp.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,6 +33,9 @@ public class Diagnosis {
     private boolean isValid;
 
     private Long issueId;
+
+    @CreationTimestamp
+    private LocalDateTime diagnosisDate;
 
     @JsonIgnore
     @ToString.Exclude
