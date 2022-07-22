@@ -49,7 +49,7 @@ public class MedicServiceImpl implements MedicService {
         System.out.println("la =========================" + language);
         System.out.println("path =========================" + basePath);
 
-        List<>
+//        List<>
         for(Integer healthItem1 : symptoms.getSymptomId()) {
             System.out.println("symptoms" + healthItem1);
         }
