@@ -12,7 +12,5 @@ public interface MedicService {
 
     public List<HealthItem> getAllSymptoms() throws Exception;
 
-    public List<HealthItem> getAllBodyParts() throws Exception;
-
     public Diagnosis getDiagnosis(DiagnosisDto diagnosisDtos) throws Exception;
 }

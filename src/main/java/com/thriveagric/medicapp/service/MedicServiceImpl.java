@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicServiceImpl implements MedicService {
@@ -69,20 +70,13 @@ public class MedicServiceImpl implements MedicService {
         Diagnosis build = Diagnosis.builder().name(diagnosis.getIssue().getName()).profName(diagnosis.getIssue().getProfName()).issueId((long) diagnosis.getIssue().getID()).accuracy(diagnosis.getIssue().Accuracy).build();
 
         build = diagnosisRepository.save(build);
-//        patient.addDiagnosis(build);
-//        patientRepository.save(patient);
+        build.setPatient(patient);
+        patient.addDiagnosis(build);
+        patientRepository.save(patient);
         return build;
     }
 
     public List<HealthItem> getAllSymptoms() throws Exception {
-
-        System.out.println("pass =========================" + userPassword);
-        System.out.println("user =========================" + userLogin);
-        System.out.println("url =========================" + authUrl);
-        System.out.println("la =========================" + language);
-        System.out.println("path =========================" + basePath);
-
-
 
         DiagnosisClient diagnosisClient = new DiagnosisClient(userLogin, userPassword, authUrl, language, basePath);
          List<HealthItem> healthItems = diagnosisClient.loadSymptoms();
@@ -94,22 +88,8 @@ public class MedicServiceImpl implements MedicService {
 
     }
 
-    public List<HealthItem> getAllBodyParts() throws Exception {
-
-        System.out.println("pass =========================" + userPassword);
-        System.out.println("user =========================" + userLogin);
-        System.out.println("url =========================" + authUrl);
-        System.out.println("la =========================" + language);
-        System.out.println("path =========================" + basePath);
-
-
-
-        DiagnosisClient diagnosisClient = new DiagnosisClient(userLogin + "1@gmail.com", userPassword, authUrl, "en-gb", basePath);
-        List<HealthItem> healthItems = diagnosisClient.loadBodyLocations();
-
-        for(HealthItem healthItem : healthItems) {
-            System.out.println(healthItem.toString());
-        }
-        return healthItems;
-    }
+//    public Diagnosis getLatestDiagnosis() {
+//        Optional<Diagnosis> diagnosis = diagnosisRepository.findTopByOrderByDiagnosisDateDesc();
+//        return diagnosis.get();
+//    }
 }
