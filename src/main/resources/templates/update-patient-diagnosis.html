@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/update/{id}(id=${diagnosis.id})}"
+      th:object="${diagnosis}"
+      method="post">
+
+    <p>your health issue is : </p>
+    <p th:text="${diagnosis.name}">dignosis</p>
+<!--    <p th:text="#{diagnosis.profName}"></p>-->
+
+
+    <select class="form-control" th:field="${diagnosis.isValid}">
+        <option th:value="1" >true</option>
+        <option th:value="0" >false</option>
+    </select>
+
+    <input hidden type="text" th:field="*{name}" th:value="diagnosis.name" class="form-control col-4 mb-4" placeholder="Enter Name" />
+    <input hidden type="text" th:field="*{profName}" th:value="diagnosis.profName" class="form-control col-4 mb-4" placeholder="Enter Name" />
+    <input hidden type="text" th:field="*{accuracy}" th:value="diagnosis.accuracy" class="form-control col-4 mb-4" placeholder="Enter Name" />
+    <input hidden type="text" th:field="*{issueId}" th:value="diagnosis.issueId" class="form-control col-4 mb-4" placeholder="Enter Name" />
+
+    <button type="submit" class="btn btn-primary col-2">Save</button>
+</form>
+</body>
+</html>

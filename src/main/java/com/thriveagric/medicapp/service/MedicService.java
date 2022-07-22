@@ -1,5 +1,6 @@
 package com.thriveagric.medicapp.service;
 
+import com.thriveagric.medicapp.dto.DiagnosisDto;
 import com.thriveagric.medicapp.dto.HealthDiagnosis;
 import com.thriveagric.medicapp.dto.HealthItem;
 import com.thriveagric.medicapp.models.Diagnosis;
@@ -13,5 +14,5 @@ public interface MedicService {
 
     public List<HealthItem> getAllBodyParts() throws Exception;
 
-    public Diagnosis getDiagnosis(Patient patient, int healthItem) throws Exception;
+    public Diagnosis getDiagnosis(DiagnosisDto diagnosisDtos) throws Exception;
 }
