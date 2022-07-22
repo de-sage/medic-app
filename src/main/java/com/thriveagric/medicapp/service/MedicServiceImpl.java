@@ -49,14 +49,14 @@ public class MedicServiceImpl implements MedicService {
         System.out.println("la =========================" + language);
         System.out.println("path =========================" + basePath);
 
-
+        List<>
         for(Integer healthItem1 : symptoms.getSymptomId()) {
             System.out.println("symptoms" + healthItem1);
         }
 
         System.out.println("Getting Diagnosis for patient with id : " + symptoms.getPatientId());
         Patient patient = patientRepository.getReferenceById(symptoms.getPatientId());
-        System.out.println("Getting Diagnosis for : " + patient.toString());
+        System.out.println("Getting Diagnosis for : " + patient);
 
 
         DiagnosisClient diagnosisClient = new DiagnosisClient(userLogin, userPassword, authUrl, language, basePath);
@@ -65,6 +65,7 @@ public class MedicServiceImpl implements MedicService {
 
         HealthDiagnosis diagnosis = healthItems.get(0);
         System.out.println(diagnosis.toString());
+
 
 
         Diagnosis build = Diagnosis.builder().name(diagnosis.getIssue().getName()).profName(diagnosis.getIssue().getProfName()).issueId((long) diagnosis.getIssue().getID()).accuracy(diagnosis.getIssue().Accuracy).build();
@@ -77,7 +78,7 @@ public class MedicServiceImpl implements MedicService {
     }
 
     public List<HealthItem> getAllSymptoms() throws Exception {
-
+        //get from redis cache only get from client once the application restarts
         DiagnosisClient diagnosisClient = new DiagnosisClient(userLogin, userPassword, authUrl, language, basePath);
          List<HealthItem> healthItems = diagnosisClient.loadSymptoms();
 
