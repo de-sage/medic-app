@@ -89,6 +89,18 @@ public class MedicServiceImpl implements MedicService {
 
     }
 
+    public List<Diagnosis> findByIsValid(String keyword) {
+
+        List<Diagnosis> diagnosisList = new ArrayList<>();
+        if(keyword.equalsIgnoreCase("true")) {
+           diagnosisList.addAll(diagnosisRepository.findByIsValidTrue());
+        } else if(keyword.equalsIgnoreCase("false")) {
+            diagnosisList.addAll(diagnosisRepository.findByIsValidFalse());
+        }
+
+        return diagnosisList;
+    }
+
 //    public Diagnosis getLatestDiagnosis() {
 //        Optional<Diagnosis> diagnosis = diagnosisRepository.findTopByOrderByDiagnosisDateDesc();
 //        return diagnosis.get();

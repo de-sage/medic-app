@@ -3,7 +3,6 @@ package com.thriveagric.medicapp.controller;
 import com.thriveagric.medicapp.dto.DiagnosisDto;
 import com.thriveagric.medicapp.dto.HealthItem;
 import com.thriveagric.medicapp.models.Diagnosis;
-import com.thriveagric.medicapp.models.Gender;
 import com.thriveagric.medicapp.models.Patient;
 import com.thriveagric.medicapp.repository.DiagnosisRepository;
 import com.thriveagric.medicapp.repository.PatientRepository;
@@ -11,7 +10,6 @@ import com.thriveagric.medicapp.service.MedicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,11 +33,27 @@ public class DiagnosisController {
     MedicService medicService;
     
 
-    @GetMapping({"/showDiagnosis", "/", "/list"})
+    @GetMapping({"/showDiagnosis", "/list"})
     public ModelAndView getAllDiagnosis()  {
 
         ModelAndView mav = new ModelAndView("list-diagnosis");
         mav.addObject("diagnosis", diagnosisRepository.findAll());
+        return mav;
+    }
+
+    @GetMapping({"/search",  "/",})
+    public ModelAndView getDiagnosisByIsValid(Diagnosis diagnosis, Model model, String keyword) {
+
+        ModelAndView mav = new ModelAndView("diagnosis-search");
+
+        if(keyword!=null) {
+            List<Diagnosis> list = medicService.findByIsValid(keyword);
+            model.addAttribute("diagnosis", list);
+        } else {
+            List<Diagnosis> list = diagnosisRepository.findAll();
+            mav.addObject("diagnosis", list);
+        }
+
         return mav;
     }
 
@@ -91,7 +105,5 @@ public class DiagnosisController {
                 diagnosisRepository.save(diagnosis);
             return "redirect:/";
     }
-//
-//        return "redirect:/index";
-//    }
+
 }

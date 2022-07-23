@@ -13,4 +13,6 @@ public interface MedicService {
     public List<HealthItem> getAllSymptoms() throws Exception;
 
     public Diagnosis getDiagnosis(DiagnosisDto diagnosisDtos) throws Exception;
+
+    public  List<Diagnosis> findByIsValid(String keyword);
 }
